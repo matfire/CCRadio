@@ -1,0 +1,19 @@
+version: "3"
+
+services: 
+  icecast:
+    image: moul/icecast
+    environment: 
+      - ICECAST_SOURCE_PASSWORD=toor
+      - ICECAST_ADMIN_PASSWORD=toor
+      - ICECAST_PASSWORD=toor
+      - ICECAST_RELAY_PASSWORD=toor
+    ports: 
+      - "8000:8000"
+  server:
+    depends_on: 
+      - icecast
+    build: ./server
+    ports: 
+      - "4000:4000"
+  
