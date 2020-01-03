@@ -8,6 +8,6 @@ socket.on("radio selected", (data) => {
 	console.log(data)
 	socket.emit("set radio playlist", {
 	"radioName":"name",
-	"songs": ["e3Nh350b6S4"]
+	"songs": ["http://www.youtube.com/watch?v=U9OQAySv184"]
 	})
 })
