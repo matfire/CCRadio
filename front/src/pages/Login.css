@@ -1,0 +1,53 @@
+
+.myConnect {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #464646;
+    padding-top: 20px;
+    margin-top: 100px;
+    padding-bottom: 20px;
+}
+
+h3 {
+    width: 100%;
+    color: white;
+    padding-bottom: 20px;
+    border-bottom: 1px white solid;
+}
+
+p {
+    color: white;
+}
+
+.boutonConnect {
+    margin-top: 10px;
+    margin: 10px;
+	padding:6px 0 6px 0;
+	font:bold 13px Arial;
+	background:#f5f5f5;
+	color:#555;
+	border-radius:2px;
+	width:100px;
+	border:1px solid #ccc;
+}
+
+input[type=text] {
+width: 300px;
+  padding: 12px 0px;
+  box-sizing: border-box;
+}
+
+div {
+    text-align: center;
+}
+
+.thebuttons {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+#createAccount {
+    color: red;
+}
