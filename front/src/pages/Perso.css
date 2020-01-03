@@ -1,0 +1,177 @@
+#photo_perso {
+    width: 200px;
+    height: 200px;
+    border-radius: 500px;
+}
+
+#info_perso {
+    margin-left: 25%;
+    margin-right: 25%;
+    padding-top: 30px;
+    background-color: #7C7C7C;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+}
+
+#back_perso {
+    padding-bottom: 200px;
+    background-color: red;
+    background-image: url("./image/music.jpg");
+    background-repeat: no-repeat;
+    background-position: fixed;
+    background-attachment: fixed;
+}
+
+#pseudo_perso {
+    color: white;
+    font-size: 30px;
+}
+
+#change_image_perso {
+    margin-top: 10px;
+    border: 1pt;
+    align-content: center;
+    display: grid;
+    text-align: center;
+    justify-items: center;
+}
+
+#change_pseudo_perso {
+    display: grid;
+    text-align: center;
+    justify-items: center;
+}
+
+.boutonChangePseudo {
+    margin-top: 10px;
+    margin: 10px;
+	padding:6px 0 6px 0;
+	font:bold 13px Arial;
+	background:#f5f5f5;
+	color:#555;
+	border-radius:2px;
+	width:100px;
+	border:1px solid #ccc;
+}
+
+#create_radio {
+}
+
+
+#name_create_playlist {
+    margin-top: 40px;
+    background-color: #464646;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#my_create_playlist {
+    padding-top: 10px;
+    background-color: #7C7C7C;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    padding-bottom: 200px;
+}
+
+#choice_music {
+    margin-top: 20px;
+    width: 90%;
+    background-color: black;
+    margin-bottom: 20px;
+}
+
+#white {
+    color: white;
+}
+
+#name_choice_music {
+    margin-left: 20%;
+    margin-right: 20%;
+    display: grid;
+    grid-template-columns: 100% 40%;
+}
+
+#h2namemusic {
+    color: white;
+}
+
+#list_music {
+    display: grid;
+    background-color: #2B2A2A;
+    justify-items: center;
+    text-align: center;
+    padding-bottom: 200px;
+    
+}
+
+#page_profil {
+    background-color: black;
+}
+
+#photo_playlist {
+    border: 1rem solid;
+    width: 300px;
+    height: 300px;
+}
+
+.choice_name_playlist {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+}
+
+#change_photo_name_playlist {
+    display: grid;
+}
+
+#one_music {
+    margin-top: 10px;
+    width: 90%;
+    height: 70px;
+    background-color: #464646;
+    display: grid;
+    grid-template-columns: 10% 40% 40% 10%;
+    justify-items: center;
+    text-align: center;
+}
+
+#photo_music {
+    margin-left: 10px;
+    border-radius: 400px;
+    height: 60px;
+    width: 60px;
+    margin-top: 5px;
+}
+
+#name_music {
+    color: white;
+    border: none;
+}
+
+.boutonDeleteMusic {
+    height: 50px;
+	font:bold 13px Arial;
+	background:#f5f5f5;
+	color:#555;
+	border-radius:2px;
+	width:50px;
+	border:1px solid #ccc;
+    margin-top: 10px;
+}
+
+
+#your_playlist
+{
+    padding-top: 200px;
+    background-image: url("./image/music.jpg");
+    padding-bottom: 300px;
+    background-repeat: no-repeat;
+    background-position: fixed;
+    background-attachment: fixed;
+}
