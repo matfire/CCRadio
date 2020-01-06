@@ -8,14 +8,16 @@ import { Navbar,
         FormControl,
         Button,
         InputGroup,
-        CardGroup,
         ListGroup
     } from 'react-bootstrap';
 import { Grid } from "@material-ui/core";
+import { MDBCarousel,
+        MDBCarouselInner,
+        MDBCarouselItem,
+        MDBView,
+        MDBContainer } from "mdbreact";
 import './Perso.css';
 import image_profil from './image/chat.jpg';
-import image_fond from './image/music.jpg';
-import Music from './Music.jsx';
 
 const NavBarDrawer = status => {
     return (
@@ -24,7 +26,7 @@ const NavBarDrawer = status => {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                     <NavDropdown title={status.current} id="collasible-nav-dropdown">
-                        <NavDropdown.Item class="white" href="#profile">My Profile</NavDropdown.Item>
+                        <NavDropdown.Item className="white" href="#profile">My Profile</NavDropdown.Item>
                         <NavDropdown.Item href="#playlist">Playlist</NavDropdown.Item>
                         <NavDropdown.Divider/>
                         <NavDropdown.Item href="#new_playlist">New Playlist</NavDropdown.Item>
@@ -37,7 +39,12 @@ const NavBarDrawer = status => {
 
 const Profilecard = data => {
     return (
-            <Card className="my_card" style={{ textAlign: "center" }} border="info" bg="dark">
+            <Card
+                className="my_card"
+                border="info"
+                bg="dark"
+                style={{ textAlign: "center"}}
+            >
                 <Card.Header  id="text_white">Profil</Card.Header>
                 <Card.Img variant="top" src={data.img}/>
                 <Card.Body id="change_pseudo_perso">
@@ -52,7 +59,7 @@ const Profilecard = data => {
                             aria-describedby="basic-addon2"
                             name="fname"
                             onChange={data.updateInput.bind(this)}
-                            />
+                        />
                             <Button
                                 variant="outline-secondary"
                                 onClick={data.print.bind(this)}>Enter</Button>
@@ -93,15 +100,54 @@ const AllPlaylistCard = data => {
     )
 }
 
-
+const CarouselDrawer = data => {
+    return (
+    <MDBContainer>
+         <Grid container spacing={0} direction="row" alignItems="center" justify="center">
+        <MDBCarousel
+            activeItem={1}
+            length={3}
+            showControls={true}
+            showIndicators={true}
+            style={{ maxWidth: "600px" }}
+            >
+        <MDBCarouselInner>
+        <MDBCarouselItem itemId="1">
+            <MDBView>
+            <Profilecard id="my_card" img={data.img}
+                    pseudo={data.prPseudo}
+                    updPseudo={data.pseudo}
+                    updateInput={data.updateInput.bind(this)}
+                    print={data.setPrintedPseudo.bind(this)}/>
+            </MDBView>
+        </MDBCarouselItem>
+        <MDBCarouselItem itemId="2">
+            <MDBView>
+                <PlaylistCard
+                    id="my_card"
+                    img={data.img}
+                    />
+            </MDBView>
+        </MDBCarouselItem>
+        <MDBCarouselItem itemId="3">
+            <MDBView>
+            <PlaylistCard img={data.img}/>
+            </MDBView>
+        </MDBCarouselItem>
+        </MDBCarouselInner>
+    </MDBCarousel>
+    </Grid>
+</MDBContainer>
+    );
+}
 
 const MusicInfo = data => {
     return (
         <ListGroup.Item action variant={data.color}>
-                <div>
+            <div>
             <Image id="music_photo" src={data.img} roundedCircle/>
             <h3>{data.title}</h3>
-            <Button variant="outline-secondary"> - </Button>
+            <Button href="#" variant="outline-secondary"> - </Button>
             </div>
         </ListGroup.Item>
     )
@@ -121,11 +167,11 @@ const PlaylistCard = data => {
                             aria-label="Playlist name"
                             aria-describedby="basic-addon2"
                             name="pname"
-                            />
+                        />
                             <Button
                                 variant="outline-secondary">Create</Button>
                     </InputGroup>
-                    <Grid container spacing={3} direction="row" alignItems="baseline">
+                    <Grid container spacing={0} direction="row" alignItems="center" justify="center">
                     <Card bg="dark" text="white" border="success"
                         style={{ }}>
                         <Card.Body>
@@ -183,24 +229,23 @@ class Perso extends React.Component {
                     <NavBarDrawer current={this.state.current}/>
                 </div>
                 <div id="test">
-                    <CardGroup>
-                        <Profilecard id="my_card" img={image_profil}
-                                    pseudo={this.state.printed_pseudo}
-                                    updPseudo={this.state.pseudo}
-                                    updateInput={this.updateInput.bind(this)}
-                                    print={this.setPrintedPseudo.bind(this)}/>
-                        <PlaylistCard id="my_card" img={image_profil}/>
-                        <AllPlaylistCard id="my_card" img={image_profil}
-                                    pseudo={this.state.printed_pseudo}
-                                    updPseudo={this.state.pseudo}
-                                    updateInput={this.updateInput.bind(this)}
-                                    print={this.setPrintedPseudo.bind(this)}/>
-                    </CardGroup>
+                    <CarouselDrawer 
+                        img={image_profil}
+                        prPseudo={this.state.printed_pseudo}
+                        pseudo={this.state.pseudo}
+                        updateInput={this.updateInput.bind(this)}
+                        setPrintedPseudo={this.setPrintedPseudo.bind(this)}
+                    />
                 </div>
             </div>
         </div>
             /*<div id="create_radio">    
-                <div id="create_playlist">
+            <div id="create_playlist">
+            <AllPlaylistCard id="my_card" img={image_profil}
+                        pseudo={this.state.printed_pseudo}
+                        updPseudo={this.state.pseudo}
+                        updateInput={this.updateInput.bind(this)}
+                        print={this.setPrintedPseudo.bind(this)}/>
                     <div id="name_create_playlist">
                         <h3 id="ccrrte"> Créer une playlist </h3>
                     </div>
