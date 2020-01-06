@@ -175,3 +175,39 @@
     background-position: fixed;
     background-attachment: fixed;
 }
+
+
+#test {
+    display: grid;
+    grid-template-columns: 100% 100%;
+    margin: 30px;;
+    justify-items: center;
+    text-align: center;
+}
+
+.my_card {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+#music_photo
+{
+    text-align: center;
+    height: 5em;
+}
+
+#text_white {
+    color: white;
+}
+
+.white {
+    color: white;
+}
+
+@media (orientation: portrait) {
+    .my_card {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+}

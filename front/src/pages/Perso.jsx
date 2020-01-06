@@ -24,7 +24,7 @@ const NavBarDrawer = status => {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                     <NavDropdown title={status.current} id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#profile">My Profile</NavDropdown.Item>
+                        <NavDropdown.Item class="white" href="#profile">My Profile</NavDropdown.Item>
                         <NavDropdown.Item href="#playlist">Playlist</NavDropdown.Item>
                         <NavDropdown.Divider/>
                         <NavDropdown.Item href="#new_playlist">New Playlist</NavDropdown.Item>
@@ -37,7 +37,8 @@ const NavBarDrawer = status => {
 
 const Profilecard = data => {
     return (
-            <Card style={{ textAlign: "center" }} border="info" bg="dark">
+            <Card className="my_card" style={{ textAlign: "center" }} border="info" bg="dark">
+                <Card.Header  id="text_white">Profil</Card.Header>
                 <Card.Img variant="top" src={data.img}/>
                 <Card.Body id="change_pseudo_perso">
                     <div>
@@ -62,6 +63,38 @@ const Profilecard = data => {
     )
 }
 
+
+
+const AllPlaylistCard = data => {
+    return (
+            <Card className="my_card" style={{ textAlign: "center" }} border="info" bg="dark">
+                <Card.Header  id="text_white">Your playlists</Card.Header>
+                <Card.Img variant="top" src={data.img}/>
+                <Card.Body id="change_pseudo_perso">
+                    <div>
+                    <Button className="boutonChangePseudo"> Change Image </Button>
+                    <h2 id="pseudo_perso" > {data.pseudo} </h2>
+                    <InputGroup className="mb-3">
+                        <FormControl
+                            id="fname"
+                            placeholder="user's pseudo"
+                            aria-label="user's pseudo"
+                            aria-describedby="basic-addon2"
+                            name="fname"
+                            onChange={data.updateInput.bind(this)}
+                            />
+                            <Button
+                                variant="outline-secondary"
+                                onClick={data.print.bind(this)}>Enter</Button>
+                    </InputGroup>
+                    </div>
+                </Card.Body>
+            </Card>
+    )
+}
+
+
+
 const MusicInfo = data => {
     return (
         <ListGroup.Item action variant={data.color}>
@@ -76,7 +109,7 @@ const MusicInfo = data => {
 
 const PlaylistCard = data => {
     return (
-                <Card style={{ textAlign: "center" }} border="info" bg="dark" text="white">
+                <Card className="my_card" style={{ textAlign: "center" }} border="info" bg="dark" text="white">
                     <Card.Header>New Playlist</Card.Header>
                     <Card.Img variant="top" src={data.img}/>
                     <Card.Body>
@@ -94,7 +127,7 @@ const PlaylistCard = data => {
                     </InputGroup>
                     <Grid container spacing={3} direction="row" alignItems="baseline">
                     <Card bg="dark" text="white" border="success"
-                        style={{ width: '40rem' }}>
+                        style={{ }}>
                         <Card.Body>
                             <ListGroup>
                             <div>
@@ -149,22 +182,24 @@ class Perso extends React.Component {
                 <div id="top">
                     <NavBarDrawer current={this.state.current}/>
                 </div>
-                <div>
+                <div id="test">
                     <CardGroup>
-                    <Grid container spacing={0} direction="row" alignItems="baseline" justify="center">
-        <Grid item xs={6}>
-                        <Profilecard img={image_profil}
+                        <Profilecard id="my_card" img={image_profil}
                                     pseudo={this.state.printed_pseudo}
                                     updPseudo={this.state.pseudo}
                                     updateInput={this.updateInput.bind(this)}
                                     print={this.setPrintedPseudo.bind(this)}/>
-                        <PlaylistCard img={image_profil}/>
-                    </Grid>
-                    </Grid>
+                        <PlaylistCard id="my_card" img={image_profil}/>
+                        <AllPlaylistCard id="my_card" img={image_profil}
+                                    pseudo={this.state.printed_pseudo}
+                                    updPseudo={this.state.pseudo}
+                                    updateInput={this.updateInput.bind(this)}
+                                    print={this.setPrintedPseudo.bind(this)}/>
                     </CardGroup>
                 </div>
             </div>
-            <div id="create_radio">    
+        </div>
+            /*<div id="create_radio">    
                 <div id="create_playlist">
                     <div id="name_create_playlist">
                         <h3 id="ccrrte"> Créer une playlist </h3>
@@ -225,7 +260,7 @@ class Perso extends React.Component {
 
                 </div>
             </div>
-        </div>
+        </div>*/
     );
 }
 }
