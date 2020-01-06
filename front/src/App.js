@@ -8,7 +8,7 @@ import Perso from "./pages/Perso"
 function App() {
   return (
     <div>
-        <Perso/>
+        <Home/>
     </div>
   );
 }

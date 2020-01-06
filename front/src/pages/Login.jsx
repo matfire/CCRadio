@@ -19,6 +19,7 @@ function Login(props) {
 
     
     return (
+        <div id="login">
             <div className="myConnect">
                 <h3> Veuillez vous connecter </h3>
 
@@ -33,6 +34,7 @@ function Login(props) {
                 </div>
         
             </div>
+        </div>
     );
 }
 

@@ -1,4 +1,14 @@
 
+html {
+    background: url(image/lizard.jpg) no-repeat center fixed; 
+    background-size: cover; /* version standardisée */
+}
+
+#login {
+    background: url(image/lizard.jpg) no-repeat center fixed; 
+    background-size: cover; /* version standardisée */
+}
+
 .myConnect {
     width: 400px;
     margin: 0 auto;

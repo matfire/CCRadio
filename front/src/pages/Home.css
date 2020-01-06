@@ -1,7 +1,15 @@
+
+html {
+    background: url('image/back.jpg') no-repeat center fixed;
+    background-size: cover;
+}
+
+
 #top {
+    background-color: black;
     display: flex;
     margin: auto;
-    background-color: #464646;
+    background-color: light;
 }
 
 #top_mid {
@@ -17,6 +25,8 @@
 
 #home {
     justify-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -65,4 +75,15 @@
 .name_musique {
     color: black;
     font-size: 20px;
+}
+
+#home_2 {
+    background: url('image/back.jpg') no-repeat center fixed;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+}
+
+#card_music {
+    margin-left: 200px;
 }
