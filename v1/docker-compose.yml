@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  mongo:
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - "27017:27017"
+  redis:
+    image: redis
+    expose:
+      - 6379
+  server:
+    depends_on: 
+      - mongo
+      - redis
+    restart: always
+    build: ./server
+    ports: 
+      - "4000:4000"
+    volumes:
+      - ./data/images:/app/images
