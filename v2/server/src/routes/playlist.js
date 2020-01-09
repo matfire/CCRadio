@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const {isAuthenticated} = require("../middleware")
+const RadioModel = require("../models/Radio")
 const PlaylistModel = require("../models/Playlist")
 const nodeshout = require('nodeshout')
 const FileReadStream = nodeshout.FileReadStream
@@ -32,10 +33,22 @@ const createShout = () => {
 // 	res.json({playlist})
 // })
 
+router.post("/", isAuthenticated, async(req, res) => {
+	let playlist = await PlaylistModel.create({
+		songs: req.body.songs,
+		name: req.body.name + "_" + req.user._id,
+		author: req._id
+	})
+	let radio = await RadioModel.findById(req.body.radioId)
+	radio.currentPlaylist = playlist._id
+	await radio.save()
+	res.json({playlist})
+})
+
 router.get("/play/:id", isAuthenticated, async(req, res) => {
 	let playlist = await PlaylistModel.findById(req.params.id)
 	let shout = createShout()
-	const index = 0
+	let index = 0
 	shout.setMount(`${req.query.radio}`)
 	shout.open()
 	const metadata = nodeshout.createMetadata();
@@ -45,6 +58,7 @@ router.get("/play/:id", isAuthenticated, async(req, res) => {
 		var fileStream = new FileReadStream(__dirname + `/../../music/${playlist.songs[index]}.mp3`, 65536)
 		var shoutStream = fileStream.pipe(new ShoutStream(shout))
 		shoutStream.on("finish", () => {
+			console.log("[+] Song finished")
 			index += 1
 			if (index >= playlist.songs.length)
 				index = 0

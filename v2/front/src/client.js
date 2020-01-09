@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const API_URL = "http://localhost:4000"
+const CAST_URL = "http://localhost:8000"
 
 /**
  * 
@@ -8,7 +9,7 @@ const API_URL = "http://localhost:4000"
  * @param {String} password 
  */
 const register = async(email, password) => {
-	let res = await axios.post(`${API_URL}/register`, {email, password})
+	let res = await axios.post(`${API_URL}/auth/register`, {email, password})
 	if (res.status < 400) {
 		let {token, user} = res.data
 		localStorage.setItem("jwt", token)
@@ -19,7 +20,7 @@ const register = async(email, password) => {
 }
 
 const login = async(email, password) => {
-	let res = await axios.post(`${API_URL}/login`, {email, password})
+	let res = await axios.post(`${API_URL}/auth/login`, {email, password})
 
 	if (res.status < 400) {
 		let {token, user} = res.data
@@ -34,7 +35,7 @@ const login = async(email, password) => {
  * @returns {[String]} - radio list
  */
 const getRadios = async() => {
-	let res = await axios.get(`${API_URL}/radio/current`)
+	let res = await axios.get(`${API_URL}/radio`)
 	if (res.status < 400) {
 		return res.data.radios
 	} else {
@@ -119,7 +120,7 @@ const getSongs = async() => {
 const createPlaylist = async(name, songs, radioId) => {
 	const token = localStorage.getItem("jwt")
 
-	let res = await axios.post(`${API_URL}/radio/playlist`, {
+	let res = await axios.post(`${API_URL}/playlist`, {
 		name,
 		songs,
 		radioId
@@ -145,7 +146,26 @@ const getCurrentRadioSongs = async(radioId) => {
 	}
 }
 
-const getAudioUrl = (name) => `${API_URL}/radio/play/${name}`
+const getAudioUrl = (name) => `${CAST_URL}/${name}`
+
+/**
+ * 
+ * @param {String} playlistId 
+ * @param {String} radioId 
+ */
+const playRadio = async(playlistId, radioId) => {
+	const token = localStorage.getItem("jwt")
+
+	let res = await axios.get(`${API_URL}/playlist/play/${playlistId}?radio=${radioId}`, {
+		headers: {
+			Authorization: token
+		}
+	})
+
+	if (res.status < 400) {
+		return true
+	} return false
+}
 
 
-export {register, login, getRadios, createRadio, getRadio, getImage, getSongs, createPlaylist, getCurrentRadioSongs, getAudioUrl}
+export {register, login, getRadios, createRadio, getRadio, getImage, getSongs, createPlaylist, getCurrentRadioSongs, getAudioUrl, playRadio}

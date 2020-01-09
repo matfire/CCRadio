@@ -26,6 +26,8 @@ services:
       - ./data/images:/app/images
   icecast:
     image: moul/icecast
+    volumes: 
+      - ./config/icecast.xml:/etc/icecast2/icecast.xml
     environment:
       - ICECAST_SOURCE_PASSWORD=aaa
       - ICECAST_ADMIN_PASSWORD=bbb
