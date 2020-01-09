@@ -3,6 +3,7 @@ import { Nav } from './Home'
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardHeader, MDBCardBody, MDBInput, MDBFileInput, MDBBtn } from 'mdbreact'
 import ColorPicker from 'material-ui-color-picker'
 import { createRadio } from '../client'
+import { useHistory } from 'react-router-dom'
 
 const RadioCreate = () => {
 	const [mainColor, setmainColor] = useState("")
@@ -10,7 +11,7 @@ const RadioCreate = () => {
 	const [radioName, setRadioName] = useState("")
 	const [slogan, setSlogan] = useState("")
 	const [logo, setLogo] = useState(new File([], "test name"))
-
+	const history = useHistory()
 
 	useEffect(() => {
 		document.body.style.backgroundColor = mainColor || "white"
@@ -46,7 +47,7 @@ const RadioCreate = () => {
 								<div className="mt-3 text-center modifiable">
 									<MDBBtn color="primary" onClick={() => {
 										createRadio(radioName, slogan, logo, mainColor, secondaryColor).then((id) => {
-											console.log(id)
+											history.push(`/radio/${id}`)
 										})
 									}}>Create</MDBBtn>
 								</div>

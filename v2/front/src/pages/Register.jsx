@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardHeader, MDBInput, MDBBtn } from 'mdbreact'
 import {register} from '../client'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 function Login(props) {
     let [email, setEmail] = useState("")
     let [password, setPassword] = useState("")
-
+    let history = useHistory()
     return (
         <MDBContainer fluid>
             <MDBRow center >
@@ -19,7 +19,7 @@ function Login(props) {
                             </div>
                             <div className="text-center mt-4">
                                 <MDBBtn color="primary" onClick={() => {
-                                    register(email, password).then(() => {console.log(localStorage.getItem("jwt"))})
+                                    register(email, password).then(() => {history.push("/")})
                                 }}>Sign up</MDBBtn> or <Link to="/login">Sign In</Link>
                             </div>
                         </MDBCardBody>

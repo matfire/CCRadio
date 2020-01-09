@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardHeader, MDBSpinner, MDBIcon, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn, MDBSelect, MDBInput } from 'mdbreact'
 import { Nav } from './Home'
@@ -49,9 +49,11 @@ const Radio = (props) => {
     const [loading, setLoading] = useState(true)
     const [playlistModalOpen, setPlaylistModal] = useState(false)
     const user = JSON.parse(localStorage.getItem("user"))
+    const player = useRef()
     useEffect(() => {
 
         setNewRadio()
+        new Plyr(player.current)
         return prepareExit
     }, [id])
     const prepareExit = () => {
@@ -76,8 +78,6 @@ const Radio = (props) => {
             </MDBRow>
         </MDBContainer>)
     }
-    let player = new Plyr("#audio-source")
-
     return (
         <div>
             <Nav radioName={radio.name} radioSlogan={radio.slogan} />
@@ -97,17 +97,17 @@ const Radio = (props) => {
                                 <div className="grey-text">
                                     <div className="text-center"><p className="modifiable">{radio.slogan}</p></div>
                                     <MDBRow center>
-                                        <img className="img-fluid" src={getImage(radio.logo.split(".").pop())} alt={radio.name} />
+                                        <img className="img-fluid" style={{height:"150px"}} src={getImage(radio.logo.split(".").pop())} alt={radio.name} />
                                     </MDBRow>
                                     <hr />
                                     <div className="text-center">
                                         <h3>Currently Playing</h3>
                                     </div>
-                                    {radio.currentPlaylist.songs && radio.currentPlaylist.songs.length > 0 ?
+                                    {radio.currentPlaylist && radio.currentPlaylist.songs.length > 0 ?
                                         <div className="text-center">
                                             {user && radio.user._id === user._id && <MDBRow center>
                                                     <MDBCol md="6">
-                                                        <MDBBtn color="amber" onClick={() => playRadio(radio.currentPlaylist._id, radio._id)} >Play/Pause</MDBBtn>
+                                                        <MDBBtn color="amber" onClick={() => playRadio(radio.currentPlaylist._id, radio._id)} >Launch</MDBBtn>
                                                     </MDBCol>
                                                 </MDBRow>}
                                             <MDBRow>
@@ -121,7 +121,7 @@ const Radio = (props) => {
                                                     />
                                                 </MDBCol>
                                                 <MDBCol md="12">
-                                                    <audio id="audio-source" controls crossOrigin="anonymous" autoPlay>
+                                                    <audio ref={player} id="audio-source" controls crossOrigin="anonymous" autoPlay>
                                                         <source src={getAudioUrl(radio._id)} type="audio/mp3" crossOrigin="anonymous"/>
                                                     </audio>
                                                 </MDBCol>
